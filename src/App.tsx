@@ -1,26 +1,35 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {useState} from 'react';
+
 import './App.css';
+import {Tablo} from "./Tablo";
+import {Button1} from "./Button1";
+import {Button2} from "./Button2";
+
 
 function App() {
+    let [value, setValue] = useState<number>(0);
+
+
+    function plus() {
+        if (value<5) {
+            value++;
+            setValue(value);
+        }
+    }
+
+    function reset() {
+        setValue(0)
+    }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="container">
+     <Tablo value={value}/>
+     <Button1 plus={plus} value={value}/>
+     <Button2 reset={reset} value={value}/>
     </div>
   );
 }
 
 export default App;
+
+
