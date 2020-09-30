@@ -1,16 +1,47 @@
+
+body {
+    /*display: flex;*/
+    /*text-align: center;*/
+    /*justify-content: center;*/
+    /*align-items: center;*/
+    background-color: rgb(43 43 43);
+}
+
 .container {
-    display: flex;
-    margin-left: auto;
-    margin-right: auto;
-    border: 3px solid blue;
+    position: absolute;
+    top:30%;
+    left: 40%;
     padding: 100px;
+    /*position: absolute;*/
+    /*height: 100%;*/
+    display: flex;
+    /*margin: 50px;*/
+    /*margin: 0 auto;*/
+    /*padding: 100px;*/
     text-align: center;
     justify-content: center;
+    align-items: center;
     background-color: #8fbc8f;
 }
 
-.paint {
-    color:red
+.setCounter {
+    border: 1px black solid;
+    margin: 10px;
+}
+
+.counter {
+    border: 1px black solid;
+    margin: 10px;
+}
+
+
+.redError {
+    color:red;
+    /*border:1px solid red;*/
+}
+
+.blueMessage {
+    color:blue;
 }
 
 .disabled {
@@ -18,5 +49,8 @@
 }
 
 .tablo {
-    border:1px solid black
+
+
+    padding: 50px;
+
 }
