@@ -29,7 +29,7 @@ export type ChangeStartValueActionType = {
 }
 
 export type SetNewValuesActionType = {
-
+  type: ACTION_TYPE.SET_NEW_VALUES
 }
 
 // General Action Type
@@ -38,6 +38,7 @@ export type ActionsType =
     | ResetValueActionType
     | ChangeMaxValueActionType
     | ChangeStartValueActionType
+    | SetNewValuesActionType
 
 
 
@@ -58,6 +59,10 @@ export const changeStartValueAC = (startValue:number):ChangeStartValueActionType
     return {type:ACTION_TYPE.CHANGE_START_VALUE, startValue}
 }
 
+export const setNewValuesAC = ():SetNewValuesActionType => {  //?
+    return {type:ACTION_TYPE.SET_NEW_VALUES}
+}
+
 //types
 type CounterStateType = {
     startValue:number
@@ -65,7 +70,7 @@ type CounterStateType = {
     currentValue:number
 }
 
-type StateType = {
+export type StateType = {
     counterState:CounterStateType
     change:boolean
 }
@@ -99,6 +104,10 @@ export const counterReducer = (state:StateType = initialState, action:ActionsTyp
 
         case ACTION_TYPE.CHANGE_START_VALUE: {
             return {...state, counterState: {...state.counterState, startValue:action.startValue}, change:true}
+        }
+
+        case ACTION_TYPE.SET_NEW_VALUES: {
+            return {...state, counterState:{...state.counterState, currentValue:state.counterState.startValue}, change:false} //?
         }
 
         default:
