@@ -3,10 +3,9 @@ import React from 'react';
 // enum Action type
 export enum ACTION_TYPE {
     INCREMENT_VALUE = "INCREMENT_VALUE",
-    RESET_VALUE = "RESET_VALUE",
+    RESET_SET_VALUE = "RESET_SET_VALUE",
     CHANGE_MAX_VALUE = "CHANGE_MAX_VALUE",
     CHANGE_START_VALUE = "CHANGE_START_VALUE",
-    SET_NEW_VALUES = "SET_NEW_VALUES",
 }
 
 // Action Types
@@ -14,8 +13,8 @@ export type IncrementValueActionType = {
     type: ACTION_TYPE.INCREMENT_VALUE
 }
 
-export type ResetValueActionType = {
-    type:ACTION_TYPE.RESET_VALUE
+export type ResetSetValueActionType = {
+    type:ACTION_TYPE.RESET_SET_VALUE
 }
 
 export type ChangeMaxValueActionType = {
@@ -28,17 +27,15 @@ export type ChangeStartValueActionType = {
     startValue:number
 }
 
-export type SetNewValuesActionType = {
-  type: ACTION_TYPE.SET_NEW_VALUES
-}
+
 
 // General Action Type
 export type ActionsType =
     IncrementValueActionType
-    | ResetValueActionType
+    | ResetSetValueActionType
     | ChangeMaxValueActionType
     | ChangeStartValueActionType
-    | SetNewValuesActionType
+
 
 
 
@@ -47,8 +44,8 @@ export const incrementValueAC = ():IncrementValueActionType => {
     return {type:ACTION_TYPE.INCREMENT_VALUE}
 }
 
-export const resetValueAC = ():ResetValueActionType => {
-    return {type:ACTION_TYPE.RESET_VALUE}
+export const resetSetValueAC = ():ResetSetValueActionType => {
+    return {type:ACTION_TYPE.RESET_SET_VALUE}
 }
 
 export const changeMaxValueAC = (maxValue:number):ChangeMaxValueActionType => {
@@ -59,9 +56,6 @@ export const changeStartValueAC = (startValue:number):ChangeStartValueActionType
     return {type:ACTION_TYPE.CHANGE_START_VALUE, startValue}
 }
 
-export const setNewValuesAC = ():SetNewValuesActionType => {  //?
-    return {type:ACTION_TYPE.SET_NEW_VALUES}
-}
 
 //types
 type CounterStateType = {
@@ -76,7 +70,7 @@ export type StateType = {
 }
 
 //initial State
-const initialState:StateType = {
+export const initialState:StateType = {
   counterState: {
       startValue: 0,
       maxValue: 5,
@@ -94,8 +88,8 @@ export const counterReducer = (state:StateType = initialState, action:ActionsTyp
            return {...state, counterState:{...state.counterState, currentValue:state.counterState.currentValue+1} }
         }
 
-        case ACTION_TYPE.RESET_VALUE: {
-            return {...state, counterState:{...state.counterState, currentValue:state.counterState.startValue}}
+        case ACTION_TYPE.RESET_SET_VALUE: {
+            return {...state, counterState:{...state.counterState, currentValue:state.counterState.startValue}, change:false}
         }
 
         case ACTION_TYPE.CHANGE_MAX_VALUE:{
@@ -104,10 +98,6 @@ export const counterReducer = (state:StateType = initialState, action:ActionsTyp
 
         case ACTION_TYPE.CHANGE_START_VALUE: {
             return {...state, counterState: {...state.counterState, startValue:action.startValue}, change:true}
-        }
-
-        case ACTION_TYPE.SET_NEW_VALUES: {
-            return {...state, counterState:{...state.counterState, currentValue:state.counterState.startValue}, change:false} //?
         }
 
         default:

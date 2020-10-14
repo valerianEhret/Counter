@@ -1,9 +1,11 @@
 import React from 'react';
 
+
 type ButtonPropsType = {
-    onClickButton: () => void
+    onClickButton: Function
     buttonTitle: string
     buttonDisabled: boolean
+    actionCreator:Function
 
 }
 
@@ -11,7 +13,8 @@ type ButtonPropsType = {
 export function Button(props: ButtonPropsType) {
 
     const onClickButton = () => {
-        props.onClickButton()
+        const action = props.actionCreator()
+        props.onClickButton(action)
     }
 
 

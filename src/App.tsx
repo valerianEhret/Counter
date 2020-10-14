@@ -31,31 +31,31 @@ function App(props: AppType) {
     return (
         <div className="container">
             <div className="setCounter">
-                <DisplayMaxValue changeMaxValue={props.store.changeMaxValue.bind(store)} state={props.store.settingsState} />
-                <DisplayStartValue changeStartValue={props.store.changeStartValue.bind(store)}
-                    state={props.store.settingsState} />
-                <Button
-                    onClickButton={props.store.setNewValues.bind(store)}
-                    buttonDisabled={disableSetButton}
-                    buttonTitle={"set"}
-                />
+                {/*<DisplayMaxValue changeMaxValue={props.store.changeMaxValue.bind(store)} state={props.store.settingsState} />*/}
+                {/*<DisplayStartValue changeStartValue={props.store.changeStartValue.bind(store)}*/}
+                {/*    state={props.store.settingsState} />*/}
+                {/*<Button*/}
+                {/*    onClickButton={props.store.setNewValues.bind(store)}*/}
+                {/*    buttonDisabled={disableSetButton}*/}
+                {/*    buttonTitle={"set"}*/}
+                {/*/>*/}
             </div>
             <div className="counter">
-                <Tablo
-                    stateCounter={props.store.counterState}
-                    state={props.store.settingsState}
-                    change={props.store.change}
-                />
-                <Button
-                    onClickButton={props.store.plus.bind(store)}
-                    buttonDisabled={disableIncButton}
-                    buttonTitle={"inc"}
-                />
-                <Button
-                    onClickButton={props.store.reset.bind(store)}
-                    buttonDisabled={disableResetButton}
-                    buttonTitle={"reset"}
-                />
+                {/*<Tablo*/}
+                    // stateCounter={props.store.counterState}
+                    // state={props.store.settingsState}
+                    // change={props.store.change}
+                {/*/>*/}
+                {/*<Button*/}
+                {/*    onClickButton={props.store.plus.bind(store)}*/}
+                {/*    buttonDisabled={disableIncButton}*/}
+                {/*    buttonTitle={"inc"}*/}
+                {/*/>*/}
+                {/*<Button*/}
+                {/*    onClickButton={props.store.reset.bind(store)}*/}
+                {/*    buttonDisabled={disableResetButton}*/}
+                {/*    buttonTitle={"reset"}*/}
+                {/*/>*/}
             </div>
 
         </div>

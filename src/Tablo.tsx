@@ -1,33 +1,25 @@
-import React, {ChangeEvent} from 'react';
+import React from 'react';
 import './App.css';
-import {MessagesType, StateCounterType, StateType} from "./store/store";
+import {StateType} from "./redux/reducer";
 
 type TabloPropsType = {
-    stateCounter:StateCounterType
+
     state:StateType
-    // messages:MessagesType
-    change:boolean
-    // currentMessage:string
-
-
 }
 
 export function Tablo(props:TabloPropsType) {
 
-const style = props.change? props.state.startValue>=0 && props.state.maxValue>=0 && props.state.maxValue>props.state.startValue? "blueMessage": "redError" : props.stateCounter.value <props.state.maxValue? "":"redError" //stateCounter.limitValue
+const style = props.state.change? props.state.counterState.startValue>=0 && props.state.counterState.maxValue>=0 && props.state.counterState.maxValue>props.state.counterState.startValue? "blueMessage": "redError" : props.state.counterState.currentValue <props.state.counterState.maxValue? "":"redError" //stateCounter.limitValue
 
-const value = props.state.startValue>=0 && props.state.maxValue>=0 && props.state.maxValue>props.state.startValue? props.change ?  "Enter values and press 'set'" :props.stateCounter.value: "incorrect value"
+const value = props.state.counterState.startValue>=0 && props.state.counterState.maxValue>=0 && props.state.counterState.maxValue>props.state.counterState.startValue? props.state.change ?  "Enter values and press 'set'" :props.state.counterState.currentValue: "incorrect value"
+
     return (
         <div  >
             <input
                 className={style}
-                // className={props.stateCounter.value <props.stateCounter.limitValue? "":"redError"}
                 value={ value}
-                // value = {props.currentMessage !== "" ? props.currentMessage : props.stateCounter.value}
-                // value={ props.change ?  "Enter values and press 'set'" :props.stateCounter.value}
-                // value={ props.state.startValue>=0 && props.state.maxValue>=0 && props.state.maxValue>props.state.startValue? props.stateCounter.value: props.messages.incorrectValueMessage}
             />
-            {/*{props.value}*/}
+
         </div>
     )
 }

@@ -4,6 +4,7 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import {returnObjToState, store} from "./store/store";
+import AppWithReducers from "./AppWithReducers";
 
 
 
@@ -12,7 +13,7 @@ export const renderTree = () => {
 
     ReactDOM.render(
         <React.StrictMode>
-            <App store={store}  returnObjToState={returnObjToState}/>
+            <AppWithReducers store={store}  returnObjToState={returnObjToState}/>
         </React.StrictMode>,
         document.getElementById('root')
     );

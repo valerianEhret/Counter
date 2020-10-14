@@ -3,7 +3,7 @@ import {
     changeStartValueAC,
     counterReducer,
     incrementValueAC,
-    resetValueAC,
+    resetSetValueAC,
     StateType
 } from "./reducer";
 
@@ -44,7 +44,7 @@ test('currentCounterValue should be changed to startValue', ()=>{
 
 //actions
 
-    const endState = counterReducer(startState,resetValueAC() )
+    const endState = counterReducer(startState,resetSetValueAC() )
 
 // expectations
 
