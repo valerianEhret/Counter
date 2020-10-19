@@ -1,53 +1,54 @@
-import React, { useEffect, useReducer} from 'react';
+import React, { useEffect} from 'react';
 
 import './App.css';
 import { Tablo } from "./Tablo";
 import { DisplayStartValue } from "./DisplayStartValue";
 import { DisplayMaxValue } from "./DisplayMaxValue";
-import { StateType, StoreType } from "./store/store";
 import { Button } from "./common/Button";
 import {
-    counterReducer,
     incrementValueAC,
-    initialState,
     resetSetValueAC,
 } from "./redux/reducer";
+import {useDispatch, useSelector} from "react-redux";
+import {AppRootStateType} from "./redux/store";
+import {StateType} from './redux/reducer'
 
 
 
-type AppType = {
-    store: StoreType
-    returnObjToState: (objToState: StateType) => StateType
-}
 
 
-function AppWithReducers(props: AppType) {
+function AppWithRedux() {
 
     //
-    useEffect(() => {
-        let dataFromLocal = localStorage.getItem('settingsState')
+    // useEffect(() => {
+    //     let dataFromLocal = localStorage.getItem('settingsState')
+    //
+    //     let objToState = dataFromLocal && JSON.parse(dataFromLocal)
+    // }, [])
 
-        let objToState = dataFromLocal && JSON.parse(dataFromLocal)
-    }, [])
+
+    const dispatch = useDispatch();
+
+    //тип экспортируется из StoreRedux, а второй тип это тип инициализационного стейта, параметры callback state => state.counter
+    const counter = useSelector<AppRootStateType, StateType>( state => state.counter  )
 
 
-    let [state, dispatch] = useReducer(counterReducer, initialState)
 
-    const disableSetButton = state.counterState.startValue < 0 || state.counterState.maxValue < 0 || state.counterState.startValue >= state.counterState.maxValue
+    const disableSetButton = counter.counterState.startValue < 0 || counter.counterState.maxValue < 0 || counter.counterState.startValue >= counter.counterState.maxValue
 
-    const disableIncButton = state.change || state.counterState.currentValue === state.counterState.maxValue
+    const disableIncButton = counter.change || counter.counterState.currentValue === counter.counterState.maxValue
 
-    const disableResetButton = state.change || state.counterState.currentValue === state.counterState.startValue
+    const disableResetButton = counter.change || counter.counterState.currentValue === counter.counterState.startValue
 
     return (
         <div className="container">
             <div className="setCounter">
 
                 <DisplayMaxValue
-                    dispatch={dispatch} state={state}
+                    dispatch={dispatch} state={counter}
                 />
                 <DisplayStartValue
-                    dispatch={dispatch} state={state}
+                    dispatch={dispatch} state={counter}
                 />
                 <Button
                     onClickButton={dispatch}
@@ -58,7 +59,7 @@ function AppWithReducers(props: AppType) {
             </div>
             <div className="counter">
                 <Tablo
-                   state={state}
+                   state={counter}
                 />
                 <Button
                     onClickButton={dispatch}
@@ -78,6 +79,6 @@ function AppWithReducers(props: AppType) {
     );
 }
 
-export default AppWithReducers;
+export default AppWithRedux;
 
 

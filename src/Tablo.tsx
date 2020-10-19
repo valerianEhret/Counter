@@ -9,9 +9,16 @@ type TabloPropsType = {
 
 export function Tablo(props:TabloPropsType) {
 
-const style = props.state.change? props.state.counterState.startValue>=0 && props.state.counterState.maxValue>=0 && props.state.counterState.maxValue>props.state.counterState.startValue? "blueMessage": "redError" : props.state.counterState.currentValue <props.state.counterState.maxValue? "":"redError" //stateCounter.limitValue
+    const change = props.state.change
+    const startValue = props.state.counterState.startValue
+    const maxValue = props.state.counterState.maxValue
+    const currentValue = props.state.counterState.currentValue
 
-const value = props.state.counterState.startValue>=0 && props.state.counterState.maxValue>=0 && props.state.counterState.maxValue>props.state.counterState.startValue? props.state.change ?  "Enter values and press 'set'" :props.state.counterState.currentValue: "incorrect value"
+
+const style = change? startValue>=0 && maxValue>=0 && maxValue>startValue? "blueMessage": "redError" : currentValue <maxValue? "":"redError"
+
+const value = startValue>=0 && maxValue>=0 && maxValue>startValue? (change ? "Enter values and press 'set'" :currentValue): "incorrect value"
+
 
     return (
         <div  >

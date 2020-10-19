@@ -1,10 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
 import * as serviceWorker from './serviceWorker';
-import {returnObjToState, store} from "./store/store";
-import AppWithReducers from "./AppWithReducers";
+import AppWithRedux from "./AppwithRedux";
+import {Provider} from "react-redux";
+import {store} from "./redux/store";
+
 
 
 
@@ -12,10 +13,11 @@ import AppWithReducers from "./AppWithReducers";
 export const renderTree = () => {
 
     ReactDOM.render(
-        <React.StrictMode>
-            <AppWithReducers store={store}  returnObjToState={returnObjToState}/>
-        </React.StrictMode>,
-        document.getElementById('root')
+        // оборачиваем компоненту в провайдер и отдаем в него store
+       <Provider store={store}>
+            <AppWithRedux/>
+       </Provider>
+        , document.getElementById('root')
     );
 }
 

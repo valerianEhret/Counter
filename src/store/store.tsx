@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import {renderTree} from "../index";
 
 
@@ -12,8 +12,6 @@ export type StoreType = {
     reset:()=>void
     setNewValues:()=>void
     change:boolean
-    // state: any
-    
 }
 
 
@@ -37,7 +35,6 @@ export type StateType = {
 
 export type StateCounterType = {
     value: number
-    // limitValue: number
 }
 
 
@@ -51,7 +48,6 @@ export const store: StoreType = {
     },
     counterState: {
         value: 0,
-        // limitValue: 5
     },
     change:false,
     changeMaxValue(maxValue: number) {
@@ -68,7 +64,7 @@ export const store: StoreType = {
     },
 
     plus() {
-        if (this.counterState.value < this.settingsState.maxValue) { //this.counterState.limitValue
+        if (this.counterState.value < this.settingsState.maxValue) {
             this.counterState.value++
         }
         renderTree()
@@ -79,7 +75,6 @@ export const store: StoreType = {
     },
     setNewValues() {
         this.counterState.value = this.settingsState.startValue
-        // this.counterState.limitValue = this.settingsState.maxValue
         this.change = false
         renderTree()
     }
